@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sanand1970.github.io/parkmester/sitemap.xml
