@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102d20">
+  <meta name="description" content="Kert- és területrendezés Budapesten és környékén. Fűnyírás, fűkaszálás, sövényvágás, bozótirtás és szezonális kerti munkák.">
+  <title>Parkmester | Kert- és területrendezés</title>
+  <style>
+    :root{
+      --forest:#102d20;--forest-2:#17452f;--green:#2f7d50;--leaf:#9fca63;
+      --cream:#f5f2e8;--paper:#fffdf8;--ink:#17221b;--muted:#647168;
+      --line:rgba(23,34,27,.12);--white:#fff;--radius:24px;
+      --shadow:0 22px 60px rgba(16,45,32,.13)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+    body.menu-open{overflow:hidden}
+    a{color:inherit}button,input,select,textarea{font:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin-inline:auto}
+    .section{padding:104px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;color:var(--green);font-size:.77rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:30px;height:2px;background:var(--leaf)}
+    h1,h2,h3,p{margin-top:0}h1,h2{letter-spacing:-.045em}
+    h1{max-width:900px;margin-bottom:25px;font-size:clamp(2.75rem,6.3vw,5.9rem);line-height:.98}
+    h2{margin-bottom:16px;font-size:clamp(2rem,4vw,3.5rem);line-height:1.06}
+    h3{font-size:1.2rem;line-height:1.3}
+    .lead{max-width:720px;color:var(--muted);font-size:clamp(1.05rem,2vw,1.22rem)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:46px}
+    .section-head p{max-width:510px;margin-bottom:5px;color:var(--muted)}
+
+    header{position:fixed;z-index:1000;inset:0 0 auto;border-bottom:1px solid transparent;transition:background .25s,border-color .25s,box-shadow .25s}
+    header.scrolled{border-color:var(--line);background:rgba(255,253,248,.91);box-shadow:0 8px 28px rgba(16,45,32,.07);backdrop-filter:blur(16px)}
+    .nav{display:flex;height:82px;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:950;letter-spacing:.045em}
+    .brand-mark{display:grid;width:43px;height:43px;place-items:center;border-radius:14px;background:var(--forest-2);color:var(--leaf);box-shadow:0 9px 24px rgba(23,69,47,.24);transition:transform .25s}
+    .brand:hover .brand-mark{transform:rotate(-5deg) translateY(-2px)}
+    .brand-mark svg{width:25px;height:25px}
+    .links{display:flex;align-items:center;gap:27px}.links a{text-decoration:none;font-size:.94rem;font-weight:750}.links a:hover{color:var(--green)}
+    .nav-call{padding:11px 18px;border-radius:999px;background:var(--forest);color:#fff!important}
+    .menu-btn{display:none;width:45px;height:45px;border:0;border-radius:14px;background:var(--cream);color:var(--ink);cursor:pointer}
+
+    .hero{position:relative;display:flex;min-height:850px;align-items:center;overflow:hidden;padding:155px 0 86px;background:radial-gradient(circle at 78% 21%,rgba(159,202,99,.34),transparent 22%),linear-gradient(135deg,#faf8f0 0%,#eef5e8 58%,#dcebd1 100%)}
+    .hero::before{content:"";position:absolute;right:-105px;bottom:-165px;width:560px;height:560px;border-radius:45% 55% 61% 39%;background:linear-gradient(135deg,var(--green),var(--forest));transform:rotate(-13deg);box-shadow:var(--shadow);animation:floatShape 8s ease-in-out infinite}
+    .hero::after{content:"";position:absolute;right:8%;bottom:8%;width:270px;height:350px;border:1px solid rgba(255,255,255,.25);border-radius:140px 24px 140px 24px;transform:rotate(15deg)}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(310px,.62fr);gap:70px;align-items:center}
+    .hero-copy{animation:reveal .75s ease both}.hero .eyebrow{margin-bottom:24px}
+    .hero h1 span{color:var(--green)}
+    .hero-copy>p{max-width:680px;margin-bottom:34px;color:#4f5d53;font-size:1.18rem}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;gap:9px;padding:0 23px;border:1px solid transparent;border-radius:999px;text-decoration:none;font-weight:850;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+    .btn:hover{transform:translateY(-3px)}.btn-primary{position:relative;overflow:hidden;background:var(--forest-2);color:#fff;box-shadow:0 13px 32px rgba(23,69,47,.23)}
+    .btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.28) 50%,transparent 75%);transform:translateX(-120%);transition:transform .6s}.btn-primary:hover::after{transform:translateX(120%)}
+    .btn-secondary{border-color:var(--line);background:rgba(255,255,255,.74)}
+    .hero-note{display:flex;align-items:center;gap:11px;margin-top:25px;color:var(--muted);font-size:.92rem}.hero-note i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(47,125,80,.12)}
+    .hero-card{padding:30px;border:1px solid rgba(255,255,255,.8);border-radius:30px;background:rgba(255,255,255,.87);box-shadow:var(--shadow);backdrop-filter:blur(15px);animation:cardIn .8s .15s ease both;transition:transform .3s,box-shadow .3s}
+    .hero-card:hover{transform:translateY(-6px);box-shadow:0 27px 70px rgba(16,45,32,.18)}
+    .mini-title{color:var(--green);font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.hero-card h3{margin:10px 0 24px;font-size:1.65rem}
+    .check{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.check>span{display:grid;width:28px;height:28px;flex:0 0 28px;place-items:center;border-radius:50%;background:#e5f1d9;color:var(--green);font-weight:950}.check small{color:var(--muted)}
+
+    .services{background:var(--paper)}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service-card{position:relative;min-height:280px;overflow:hidden;padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .service-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:var(--shadow)}
+    .service-card::after{content:"";position:absolute;right:-35px;bottom:-40px;width:100px;height:100px;border-radius:50%;background:#eaf3dd;transition:transform .3s}.service-card:hover::after{transform:scale(1.18)}
+    .icon{display:grid;width:53px;height:53px;place-items:center;margin-bottom:35px;border-radius:17px;background:#eaf3dd;color:var(--green);font-size:1.35rem}.service-card p{margin:0;color:var(--muted)}
+
+    .process{position:relative;overflow:hidden;background:var(--forest);color:#fff}.process::before{content:"";position:absolute;top:-160px;left:-130px;width:430px;height:430px;border:90px solid rgba(159,202,99,.055);border-radius:50%}.process .eyebrow{color:var(--leaf)}.process .section-head p{color:#bdc9c1}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:step}.step{counter-increment:step;padding:28px;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:rgba(255,255,255,.045);transition:background .25s,transform .25s}.step:hover{transform:translateY(-5px);background:rgba(255,255,255,.075)}.step::before{content:"0" counter(step);display:block;margin-bottom:34px;color:var(--leaf);font-size:.82rem;font-weight:950;letter-spacing:.13em}.step p{margin:0;color:#b9c5bd}
+
+    .about-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:75px;align-items:center}.about-panel{position:relative;display:flex;min-height:470px;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:42px;border-radius:35px;background:linear-gradient(150deg,var(--green),var(--forest));color:#fff;box-shadow:var(--shadow)}.about-panel::before{content:"";position:absolute;top:-85px;right:-105px;width:315px;height:315px;border:65px solid rgba(159,202,99,.13);border-radius:50%}.about-panel strong{font-size:clamp(2.4rem,5vw,4.6rem);line-height:1}.about-panel p{max-width:340px;margin:13px 0 0;color:#d9e3dc}.values{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}.value{padding:20px;border:1px solid var(--line);border-radius:18px;background:#f6f8f3}.value strong{display:block;margin-bottom:6px;color:var(--green)}.value p{margin:0;color:var(--muted);font-size:.92rem}
+
+    .contact{background:#edf3e7}.contact-wrap{display:grid;grid-template-columns:.76fr 1.24fr;gap:24px;padding:22px;border-radius:32px;background:#fff;box-shadow:var(--shadow)}.contact-info{padding:40px;border-radius:24px;background:var(--forest);color:#fff}.contact-info p{color:#c8d4cc}.contact-list{display:grid;gap:18px;margin-top:32px}.contact-item{display:flex;gap:13px;align-items:flex-start}.contact-item b{display:block;color:var(--leaf);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}.contact-item a{text-decoration:none}.contact-item a:hover{text-decoration:underline}
+    form{padding:28px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin-bottom:16px}label{display:block;margin-bottom:7px;font-size:.88rem;font-weight:850}input,select,textarea{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:14px;outline:none;background:#fbfcf9}input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(47,125,80,.1)}textarea{min-height:130px;resize:vertical}.form-note{margin:12px 0 0;color:var(--muted);font-size:.82rem}.success{display:none;margin-top:15px;padding:13px;border-radius:12px;background:#e9f5de;color:var(--forest-2);font-weight:750}
+    footer{padding:34px 0;background:var(--forest);color:#c7d3cb}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}footer a{color:#fff;text-decoration:none}.floating-call{position:fixed;z-index:900;right:18px;bottom:18px;display:none;width:59px;height:59px;place-items:center;border-radius:50%;background:var(--green);color:#fff;text-decoration:none;box-shadow:0 15px 32px rgba(23,69,47,.38);font-size:1.35rem;animation:callPulse 2.8s infinite}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+    @keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}@keyframes cardIn{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}@keyframes floatShape{50%{transform:rotate(-10deg) translateY(-14px)}}@keyframes callPulse{50%{box-shadow:0 15px 32px rgba(23,69,47,.38),0 0 0 10px rgba(47,125,80,0)}}
+    @media(max-width:900px){.section{padding:78px 0}.links{position:fixed;inset:82px 0 auto;display:none;flex-direction:column;align-items:flex-start;padding:28px 20px 36px;border-bottom:1px solid var(--line);background:var(--paper);box-shadow:0 18px 30px rgba(16,45,32,.1)}.links.open{display:flex}.menu-btn{display:block}.hero{min-height:auto;padding-top:135px}.hero-grid{grid-template-columns:1fr}.hero-card{max-width:560px}.hero::before{opacity:.13}.service-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.about-grid,.contact-wrap{grid-template-columns:1fr}.about-panel{min-height:380px}.floating-call{display:grid}}
+    @media(max-width:600px){.container{width:min(100% - 28px,1160px)}.nav{height:72px}.links{top:72px}.brand{font-size:.92rem}.brand-mark{width:38px;height:38px}.hero{padding:116px 0 65px}.hero-copy>p{font-size:1.03rem}.actions{flex-direction:column}.btn{width:100%}.section-head{display:block}.service-grid,.steps,.values,.field-grid{grid-template-columns:1fr}.contact-wrap{padding:10px}.contact-info,form{padding:25px}.footer-inner{flex-direction:column;text-align:center}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+<header id="header">
+  <div class="container nav">
+    <a class="brand" href="#kezdolap" aria-label="Parkmester kezdőlap">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21V9m0 5c-4 0-7-2.2-7-6 4 0 7 2 7 6Zm0-5c4 0 7-2.2 7-6-4 0-7 2-7 6Z"/></svg></span>
+      <span>PARKMESTER</span>
+    </a>
+    <nav class="links" id="navLinks" aria-label="Fő navigáció">
+      <a href="#szolgaltatasok">Szolgáltatások</a><a href="#folyamat">Hogyan működik?</a><a href="#rolunk">Bemutatkozás</a><a class="nav-call" href="tel:+36702382674">Hívás</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menü megnyitása" aria-expanded="false">☰</button>
+  </div>
+</header>
+<main>
+  <section class="hero" id="kezdolap">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Kert- és területrendezés</span>
+        <h1>Visszahozzuk a kertedből azt, <span>amit benőtt az idő.</span></h1>
+        <p>Lépésről lépésre tesszük rendezettebbé a kertet és a telket. Fűnyírás, fűkaszálás, sövényvágás, bozótirtás és szezonális munkák Budapesten és környékén.</p>
+        <div class="actions"><a class="btn btn-primary" href="#ajanlat">Kérek egy egyeztetést <span>→</span></a><a class="btn btn-secondary" href="tel:+36702382674">☎ +36 70 238 2674</a></div>
+        <div class="hero-note"><i></i><span>Mondd el, mit szeretnél rendbe tenni, és megbeszéljük a lehetőségeket.</span></div>
+      </div>
+      <aside class="hero-card">
+        <span class="mini-title">Amiben számíthatsz ránk</span><h3>Érthető egyeztetés, vállalható feladatok.</h3>
+        <div class="check"><span>✓</span><div><strong>Alkalmi rendbetétel</strong><br><small>Ha egyszeri segítségre van szükséged.</small></div></div>
+        <div class="check"><span>✓</span><div><strong>Rendszeres gondozás</strong><br><small>Előre egyeztetett alkalmak szerint.</small></div></div>
+        <div class="check"><span>✓</span><div><strong>Személyes hozzáállás</strong><br><small>A feladatot együtt pontosítjuk.</small></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section services" id="szolgaltatasok">
+    <div class="container">
+      <div class="section-head reveal"><div><span class="eyebrow">Szolgáltatások</span><h2>Amikor a kert már több időt kér, mint amennyi jut rá</h2></div><p>Vállalunk kisebb és nagyobb kerti munkákat, egyszeri rendbetételt és előre egyeztetett gondozást.</p></div>
+      <div class="service-grid">
+        <article class="service-card reveal"><div class="icon">✦</div><h3>Fűnyírás</h3><p>Gyepfelületek alkalmi vagy rendszeres nyírása, a területhez igazodva.</p></article>
+        <article class="service-card reveal"><div class="icon">⌁</div><h3>Fűkaszálás</h3><p>Magas fűvel és gyommal benőtt, nehezebben elérhető részek levágása.</p></article>
+        <article class="service-card reveal"><div class="icon">✂</div><h3>Sövényvágás</h3><p>Sövények formázása, visszavágása és az elszáradt részek eltávolítása.</p></article>
+        <article class="service-card reveal"><div class="icon">♧</div><h3>Bozótirtás</h3><p>Elhanyagolt kertrészek és telkek megtisztítása a sűrű növényzettől.</p></article>
+        <article class="service-card reveal"><div class="icon">⌂</div><h3>Telekrendezés</h3><p>Udvarok, kertek és üres telkek fokozatos, átgondolt rendbetétele.</p></article>
+        <article class="service-card reveal"><div class="icon">☘</div><h3>Szezonális munkák</h3><p>Tavaszi és őszi kerttisztítás, lombgyűjtés és időszakos feladatok.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process" id="folyamat">
+    <div class="container">
+      <div class="section-head reveal"><div><span class="eyebrow">Egyszerű folyamat</span><h2>Előbb tisztázzuk. Aztán rendbe tesszük.</h2></div><p>Nincs felesleges kör. Röviden átbeszéljük a feladatot, egyeztetjük a részleteket és az időpontot.</p></div>
+      <div class="steps"><article class="step reveal"><h3>Kapcsolatfelvétel</h3><p>Telefonon vagy az ajánlatkérő űrlapon.</p></article><article class="step reveal"><h3>Egyeztetés</h3><p>Átbeszéljük a területet és az elvégzendő munkát.</p></article><article class="step reveal"><h3>Ajánlat</h3><p>A megbeszélt feladat alapján előre egyeztetünk.</p></article><article class="step reveal"><h3>Munkavégzés</h3><p>Az egyeztetett időpontban megkezdjük a rendbetételt.</p></article></div>
+    </div>
+  </section>
+
+  <section class="section" id="rolunk">
+    <div class="container about-grid">
+      <div class="about-panel reveal"><strong>Kis lépések.<br>Nagy változás.</strong><p>Egy rendezettebb kert sokszor az első levágott négyzetméterrel kezdődik.</p></div>
+      <div class="reveal"><span class="eyebrow">Bemutatkozás</span><h2>Új vállalkozás, komolyan vett feladatok</h2><p class="lead">Kezdő vállalkozásként nem nagy szavakat ígérünk. Figyelünk arra, amit megbeszéltünk, olyan munkát vállalunk el, amit tisztességesen meg tudunk oldani, és minden feladattal tapasztalatot építünk.</p><div class="values"><div class="value"><strong>Őszinte egyeztetés</strong><p>Elmondjuk, mit tudunk vállalni és mit nem.</p></div><div class="value"><strong>Feladathoz igazodó ajánlat</strong><p>A terület és a munka alapján beszéljük meg.</p></div><div class="value"><strong>Alkalmi segítség</strong><p>Ha egyszeri rendbetételre van szükség.</p></div><div class="value"><strong>Fokozatos fejlődés</strong><p>Minden elvégzett munkából tanulunk és építkezünk.</p></div></div></div>
+    </div>
+  </section>
+
+  <section class="section contact" id="ajanlat">
+    <div class="container contact-wrap reveal">
+      <aside class="contact-info"><span class="eyebrow">Kapcsolat</span><h2>Mutasd meg, mit kell megszelídíteni</h2><p>Írd le röviden a feladatot. Ha van lehetőséged, e-mailben fényképet is küldhetsz a területről.</p><div class="contact-list"><div class="contact-item"><span>☎</span><div><b>Telefon</b><a href="tel:+36702382674">+36 70 238 2674</a></div></div><div class="contact-item"><span>✉</span><div><b>E-mail</b><a href="mailto:parkfenntarto70@gmail.com">parkfenntarto70@gmail.com</a></div></div><div class="contact-item"><span>⌖</span><div><b>Munkaterület</b><span>Budapest és környéke</span></div></div></div></aside>
+      <form id="quoteForm">
+        <div class="field-grid"><div class="field"><label for="name">Név</label><input id="name" name="name" required autocomplete="name" placeholder="Az Ön neve"></div><div class="field"><label for="phone">Telefonszám</label><input id="phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+36 30 123 4567"></div></div>
+        <div class="field-grid"><div class="field"><label for="location">Helyszín</label><input id="location" name="location" placeholder="Település vagy kerület"></div><div class="field"><label for="service">Szolgáltatás</label><select id="service" name="service"><option>Fűnyírás</option><option>Fűkaszálás</option><option>Sövényvágás</option><option>Bozótirtás</option><option>Telekrendezés</option><option>Kertfenntartás</option><option>Egyéb</option></select></div></div>
+        <div class="field"><label for="message">A munka rövid leírása</label><textarea id="message" name="message" required placeholder="Például: körülbelül 500 m²-es telek, magas fű és kisebb bozót..."></textarea></div>
+        <div class="field"><label for="photos">📷 Fényképek a területről</label><input id="photos" name="photos" type="file" accept="image/*" multiple><p class="form-note">Válassz ki több képet a kertről vagy a munkaterületről.</p></div>
+        <button class="btn btn-primary" type="submit">Ajánlatkérés összeállítása →</button>
+        <p class="form-note">A gomb megnyitja az alapértelmezett levelezőprogramot. A kiválasztott képeket a levélhez kézzel kell csatolni. Az oldal nem tárolja az űrlap adatait.</p>
+        <div class="success" id="success" role="status">Az üzenet összeállt. Ha a levelező nem nyílt meg, írj a parkfenntarto70@gmail.com címre.</div>
+      </form>
+    </div>
+  </section>
+</main>
+<footer><div class="container footer-inner"><span>© <span id="year"></span> Parkmester</span><span><a href="tel:+36702382674">+36 70 238 2674</a> · <a href="mailto:parkfenntarto70@gmail.com">parkfenntarto70@gmail.com</a></span></div></footer>
+<a class="floating-call" href="tel:+36702382674" aria-label="Telefonhívás">☎</a>
+<script>
+  const header=document.getElementById('header');
+  const menuBtn=document.getElementById('menuBtn');
+  const navLinks=document.getElementById('navLinks');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>20),{passive:true});
+  menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open);menuBtn.textContent=open?'✕':'☰';document.body.classList.toggle('menu-open',open)});
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuBtn.textContent='☰';menuBtn.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  document.getElementById('quoteForm').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(this);const subject=encodeURIComponent('Ajánlatkérés - '+f.get('service'));const body=encodeURIComponent('Név: '+f.get('name')+'\nTelefonszám: '+f.get('phone')+'\nHelyszín: '+f.get('location')+'\nSzolgáltatás: '+f.get('service')+'\n\nA munka leírása:\n'+f.get('message'));document.getElementById('success').style.display='block';window.location.href='mailto:parkfenntarto70@gmail.com?subject='+subject+'&body='+body});
+</script>
+</body>
+</html>
